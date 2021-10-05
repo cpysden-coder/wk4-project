@@ -34,22 +34,26 @@ function getTrivia() {
   var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=seattle%20seahawks"
 
 
-//team information
-fetch(teamUrl)
-.then(function (response) {
-    console.log(response)
-    return response.json();
-  
-})
-.then(function(data) {
-    console.log(data.teams[0].strTeamBadge);
-    var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
-    console.log(teamBadge);
-    $('#team').after(`<img src=${teamBadge}></img>`)
-    // console.log(data.response[6].matchviewUrl);
-    // var scoreVideo = data.response[6].matchviewUrl
-    // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
-    // console.log(data.response)
+//team information function
 
+function team() {
 
-})
+    fetch(teamUrl)
+    .then(function (response) {
+        console.log(response)
+        return response.json();
+        
+    })
+    .then(function(data) {
+        console.log(data.teams[0].strTeamBadge);
+        var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
+        console.log(teamBadge);
+        $('#team').after(`<img src=${teamBadge}></img>`)
+        // console.log(data.response[6].matchviewUrl);
+        // var scoreVideo = data.response[6].matchviewUrl
+        // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
+        // console.log(data.response)
+        
+        
+    })
+}
