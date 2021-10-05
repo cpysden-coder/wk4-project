@@ -21,8 +21,8 @@ function getTrivia() {
         var question = data[0].question;
         console.log(question);
         $('#trivia-question').text(`${question}?`)
-        // var correctAnswer = data[0].correctAnswer;
-        // console.log(correctAnswer);
+        var correctAnswer = data[0].correctAnswer;
+        console.log(correctAnswer);
         // $('#ques').after(`<p id="corrAns">Correct Answer: ${correctAnswer} </p>`)
   
         
@@ -57,3 +57,4 @@ function team() {
         
     })
 }
+team();
