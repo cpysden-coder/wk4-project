@@ -37,7 +37,24 @@ function moodSunshine() {
     $("button").addClass("has-text-info");
 }
 
-
+$("input").click(function moodSelector() {
+    if($(this).is("#calm")) {
+        console.log("calm");
+        moodCalm();
+    }
+    else if ($(this).is("#motivated")) {
+        console.log("motivated");
+        moodMotivated();
+    }
+    else if ($(this).is("#blue")) {
+        console.log("blue");
+        moodBlue();
+    }
+    else if ($(this).is("#sunshine")) {
+        console.log("sunshine");
+        moodSunshine();
+    }
+})
 
 //Trivia Question function
 function getTrivia() {
