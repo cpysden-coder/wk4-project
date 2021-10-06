@@ -40,6 +40,7 @@ function moodSunshine() {
 
 
 
+
 //Trivia Question function
 function getTrivia() {
     triviaUrl = ("https://api.trivia.willfry.co.uk/questions?limit=5");
@@ -200,22 +201,36 @@ var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=seatt
 function team() {
 
     fetch(teamUrl)
-        .then(function (response) {
-            console.log(response)
-            return response.json();
-
-        })
-        .then(function (data) {
-            console.log(data.teams[0].strTeamBadge);
-            var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
-            console.log(teamBadge);
-            $('#team').after(`<img src=${teamBadge}></img>`)
-            // console.log(data.response[6].matchviewUrl);
-            // var scoreVideo = data.response[6].matchviewUrl
-            // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
-            // console.log(data.response)
-
-
-        })
+    .then(function (response) {
+        console.log(response)
+        return response.json();
+        
+    })
+    .then(function(data) {
+        console.log(data.teams[0].strTeamBadge);
+        var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
+        console.log(teamBadge);
+        $('#team').after(`<img src=${teamBadge}></img>`)
+        // console.log(data.response[6].matchviewUrl);
+        // var scoreVideo = data.response[6].matchviewUrl
+        // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
+        // console.log(data.response)
+        
+        
+    })
 }
-team();
+console.log(team)
+
+// var magicBtn = $(".magicBtn")
+// magicBtn.on("click", console.log())
+
+// var teams = $("select").val();
+
+// console.log(teams)
+// $("#magicBtn").click(function(){
+// console.log(teams)
+// })
+
+$('#teamList').change(function(){
+console.log($(this).children(":selected").attr("selected", true).val())
+})
