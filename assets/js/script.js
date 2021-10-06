@@ -1,6 +1,7 @@
 console.log('hollow world');
 
 
+
 //Trivia Question function
 function getTrivia() {
     triviaUrl = ("https://api.trivia.willfry.co.uk/questions?limit=5");
@@ -57,3 +58,18 @@ function team() {
         
     })
 }
+console.log(team)
+
+// var magicBtn = $(".magicBtn")
+// magicBtn.on("click", console.log())
+
+// var teams = $("select").val();
+
+// console.log(teams)
+// $("#magicBtn").click(function(){
+// console.log(teams)
+// })
+
+$('#teamList').change(function(){
+console.log($(this).children(":selected").attr("selected", true).val())
+})
