@@ -3,11 +3,12 @@ console.log('hollow world');
 answer = ""
 // Mood radio selction changes colors on page
 
-var colorPossibilities = ["has-background-info-dark", "has-background-grey-dark", "has-text-info-light", "has-background-primary", "is-primary", "has-background-danger", "has-text-link-light", "has-background-dark", "has-text-info", "has-background-warning", "has-background-warning-light", "has-text-info-dark", "has-text-info", "has-background-grey-light"]
+var colorPossibilities = ["has-background-info-dark", "has-text-info", "has-background-grey-dark", "has-text-info-light", "has-background-primary", "is-primary", "has-background-danger", "has-text-link-light", "has-background-dark", "has-text-info", "has-background-warning", "has-background-warning-light", "has-text-info-dark", "has-text-info", "has-background-grey-light"]
 
 function moodCalm() {
-    $("#header, #body, article, article p, button").removeClass(colorPossibilities);
-    $("header p").addClass("has-text-info-light")
+    $("#header, header p, #body, article, article p, article i, article h2, button").removeClass(colorPossibilities);
+    $("header p").addClass("has-text-light")
+    $("article i").addClass("has-text-light")
     $("#header").addClass("has-background-info-dark");
     $("#body").addClass("has-background-info-dark");
     $("article").addClass("has-background-grey-light");
@@ -16,8 +17,9 @@ function moodCalm() {
 }
 
 function moodMotivated() {
-    $("#header, #body, p, article, article p, button").removeClass(colorPossibilities);
-    $("header p").addClass("has-text-info-light")
+    $("#header, header p, #body, article, article p, article i, article h2, button").removeClass(colorPossibilities);
+    $("header p").addClass("has-text-light")
+    $("article i").addClass("has-text-light")
     $("#header").addClass("has-background-primary");
     $("#body").addClass("has-background-primary");
     $("article").addClass("has-background-danger");
@@ -26,8 +28,9 @@ function moodMotivated() {
 }
 
 function moodBlue() {
-    $("#header, #body, article, article p, button").removeClass(colorPossibilities);
+    $("#header, header p, #body, article, article p, article i, article h2, button").removeClass(colorPossibilities);
     $("header p").addClass("has-text-info-dark")
+    $("article i").addClass("has-text-light")
     $("#header").addClass("has-background-dark");
     $("#body").addClass("has-background-dark");
     $("article").addClass("has-background-link");
@@ -36,12 +39,14 @@ function moodBlue() {
 }
 
 function moodSunshine() {
-    $("#header, #body, article, article p, button").removeClass(colorPossibilities);
+    $("#header, header p, #body, article, article p, article i, article h2, button").removeClass(colorPossibilities);
     $("header p").addClass("has-text-info");
+    $("article i").addClass("has-text-info")
     $("#header").addClass("has-background-warning-light");
     $("#body").addClass("has-background-warning-light");
     $("article").addClass("has-background-warning");
-    $("article p").addClass("has-text-info");
+    $("article p, article h2").addClass("has-text-info");
+    $("label i").addClass("has-text-info");
     $("button").addClass("has-background-warning-light");
     $("button").addClass("has-text-info");
 }
@@ -179,9 +184,9 @@ function quote() {
         
         
         var dayQuote = data.data[0].quoteText;
-        $('#quote').text(dayQuote)
+        $('#quote').text('"' + dayQuote + '"')
         var quoteAuthor = data.data[0].quoteAuthor;
-        $('#author').text(quoteAuthor);
+        $('#author').text("-" + quoteAuthor);
         // var quoteOfDay = (data.contents.quotes[0].quote)
         // $('#quote').text(quoteOfDay);
     })
@@ -223,39 +228,25 @@ var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=seatt
 
 //team information function
 
-function team() {
+// function team() {
 
-    fetch(teamUrl)
-    .then(function (response) {
-        console.log(response)
-        return response.json();
-        
-    })
-    .then(function(data) {
-        console.log(data.teams[0].strTeamBadge);
-        var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
-        console.log(teamBadge);
-        $('#team').after(`<img src=${teamBadge}></img>`)
-        // console.log(data.response[6].matchviewUrl);
-        // var scoreVideo = data.response[6].matchviewUrl
-        // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
-        // console.log(data.response)
-        
-        
-    })
-}
-console.log(team)
+//     fetch(teamUrl)
+//         .then(function (response) {
+//             console.log(response)
+//             return response.json();
 
-// var magicBtn = $(".magicBtn")
-// magicBtn.on("click", console.log())
+//         })
+//         .then(function (data) {
+//             console.log(data.teams[0].strTeamBadge);
+//             var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
+//             console.log(teamBadge);
+//             $('#team').after(`<img src=${teamBadge}></img>`)
+//             // console.log(data.response[6].matchviewUrl);
+//             // var scoreVideo = data.response[6].matchviewUrl
+//             // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
+//             // console.log(data.response)
 
-// var teams = $("select").val();
 
-// console.log(teams)
-// $("#magicBtn").click(function(){
-// console.log(teams)
-// })
-
-$('#teamList').change(function(){
-console.log($(this).children(":selected").attr("selected", true).val())
-})
+//         })
+// }
+// team();
