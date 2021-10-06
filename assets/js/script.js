@@ -3,15 +3,21 @@ console.log('hollow world');
 answer = ""
 // Mood radio selction changes colors on page
 
+var colorPossibilities = ["has-background-info-dark", "has-background-grey-dark", "has-text-info-light", "has-background-primary", "is-primary", "has-background-danger", "has-text-link-light", "has-background-dark", "has-text-info", "has-background-warning", "has-background-warning-light", "has-text-info-dark", "has-text-info", "has-background-grey-light"]
+
 function moodCalm() {
+    $("#header, #body, article, article p, button").removeClass(colorPossibilities);
+    $("header p").addClass("has-text-info-light")
     $("#header").addClass("has-background-info-dark");
     $("#body").addClass("has-background-info-dark");
-    $("article").addClass("has-background-grey-dark");
+    $("article").addClass("has-background-grey-light");
     $("article p").addClass("has-text-info-light");
     $("button").addClass("has-background-info-dark");
 }
 
 function moodMotivated() {
+    $("#header, #body, p, article, article p, button").removeClass(colorPossibilities);
+    $("header p").addClass("has-text-info-light")
     $("#header").addClass("has-background-primary");
     $("#body").addClass("has-background-primary");
     $("article").addClass("has-background-danger");
@@ -20,25 +26,44 @@ function moodMotivated() {
 }
 
 function moodBlue() {
+    $("#header, #body, article, article p, button").removeClass(colorPossibilities);
+    $("header p").addClass("has-text-info-dark")
     $("#header").addClass("has-background-dark");
-    $("#body").removeClass("has-background-primary");
     $("#body").addClass("has-background-dark");
-    $("article").addClass("has-background-link-dark");
+    $("article").addClass("has-background-link");
     $("article p").addClass("has-text-info-light");
-    $("button").addClass("has-background-dark");
+    $("button").addClass("has-background-info");
 }
 
 function moodSunshine() {
+    $("#header, #body, article, article p, button").removeClass(colorPossibilities);
+    $("header p").addClass("has-text-info");
     $("#header").addClass("has-background-warning-light");
     $("#body").addClass("has-background-warning-light");
     $("article").addClass("has-background-warning");
-    $("header p").addClass("has-text-info");
     $("article p").addClass("has-text-info");
     $("button").addClass("has-background-warning-light");
     $("button").addClass("has-text-info");
 }
 
-
+$("input").click(function moodSelector() {
+    if($(this).is("#calm")) {
+        console.log("calm");
+        moodCalm();
+    }
+    else if ($(this).is("#motivated")) {
+        console.log("motivated");
+        moodMotivated();
+    }
+    else if ($(this).is("#blue")) {
+        console.log("blue");
+        moodBlue();
+    }
+    else if ($(this).is("#sunshine")) {
+        console.log("sunshine");
+        moodSunshine();
+    }
+})
 
 
 //Trivia Question function
