@@ -39,7 +39,8 @@
               </article>
               <article class="tile is-child notification is-warning">
                 <p class="title">Quote of the Day:</p>
-                <p class="subtitle">"How you do anything is how you do everything"</p>
+                <p id="quote" class="subtitle">"How you do anything is how you do everything"</p>
+                <p id="author" class="has-text-right is-size-6"></p>
               </article>
             </div>
             <div class="tile is-parent">
@@ -54,11 +55,29 @@
             <article class="tile is-child notification is-danger">
               <p class="title">Trivia of the Day:</p>
               <p class="subtitle" id="trivia-question"></p>
-              <input class="input" type="text" placeholder="Your Answer:">
-              <button class="button is-success">Submit!</button>
+              
               <div class="content">
-                <!-- Content -->
               </div>
+                <!-- Content -->
+              <label>
+                <input id="radio1" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-1" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <label>
+                <input id="radio2" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-2" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <label>
+                <input id="radio3" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-3" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <label>
+                <input id="radio4" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-4" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <textarea id="trivia-response" class="input" type="text" placeholder="Select above to reveal if you were right:"></textarea>
+              <button id="play-again" class="button is-success">Play Again?</button>
+              
             </article>
           </div>
         </div>
