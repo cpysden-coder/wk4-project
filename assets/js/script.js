@@ -32,7 +32,7 @@ function moodBlue() {
     $("#body").addClass("has-background-dark");
     $("article").addClass("has-background-link");
     $("article p").addClass("has-text-info-light");
-    $("button").addClass("has-background-dark");
+    $("button").addClass("has-background-info");
 }
 
 function moodSunshine() {
