@@ -94,7 +94,7 @@
               </select>
             </div>
             <p class="p-1">Current Favorite Artist:</p>
-            <input class="input" type="text" placeholder="Olivia Rodrigo">
+            <input id="artist" class="input" type="text" placeholder="Olivia Rodrigo">
             <p class="p-1">Enter Your City for Current Weather:</p>
             <input id="city" class="input" type="text" placeholder="City">
             <button class="button is-success mt-4">Watch the Magic Happen!</button>
@@ -108,9 +108,11 @@
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-info">
-            <p class="title">Favorite Artist:</p>
-            <p class="subtitle">Click below for Videos of your Favorite Artist:</p>
-            <img src="" alt="">
+            <p id="artistTitle" class="title">Favorite Artist:</p>
+            <p id="artistSubtitle" class="subtitle mb-6">Click below for Videos of your Favorite Artist:</p>
+            <a id="artist-link" target="_blank" href="https://www.youtube.com/results?search_query=olivia+rodrigo">
+              <img class="mt-6" src="./assets/yt_logo_rgb_light.png" alt="youtube logo">
+            </a>
           </article>
         </div>
       </div>
