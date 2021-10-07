@@ -157,7 +157,14 @@ function quote() {
         })
 
 }
+//run quote on page load
 quote()
+
+//listen for quote-again quote button
+$('#quote-again').on('click', function () {
+    console.log("you just clicked the quote again selector");
+    quote();
+});
 
 // fetch('https://api.quotable.io/random')
 //   .then(response => response.json())
@@ -311,8 +318,13 @@ $('#city').on('change', function () {
 
         })
         .then(function (data) {
-            var temp = data.main["temp"];
-            $('#city-temp').text(`Temperature: ${temp}`);
+            var origTemp = data.main["temp"];
+            console.log(`temp prior to slice - ${origTemp}`)
+            temp = origTemp.toString();
+            shortTemp = temp.slice(0,2)
+            console.log(`sliced temp - ${shortTemp}`)
+            console.log(`modified temp - ${temp}`)
+            $('#city-temp').text(`Temperature: ${shortTemp} ºF`);
             var icon = data.weather[0].icon;
             iconimg = "https://openweathermap.org/img/w/" + icon + ".png"
             $('#city-weather-icon').attr('src', iconimg);

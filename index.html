@@ -11,7 +11,7 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 
-<body id="body" class="has-background-primary">
+<body id="body" class="has-background-primary mx-3">
   <header id="header" class="hero is-primary is-justify-content-space-between">
     <div class="hero-body is-flex is-flex-direction-row columns">
       <div class="column is-3">
@@ -23,16 +23,16 @@
         </p>
       </div>
       <div id="weather-content" class="is-hidden is-flex is-flex-direction-row is-justify-content-flex-end column is-9">
-          <h3 id="current-conditions" class="m-3 is-size-5">Current Conditions</h3>
-          <p id="city-temp" class="m-3 is-size-5">Temperature</p>
-          <img id="city-weather-icon" class="m-3 is-size-5" alt="weather condition icon">
+        <img id="city-weather-icon" class="image is-96x96" alt="weather condition icon">  
+        <h3 id="current-conditions" class="m-3 is-size-5">Current Conditions</h3>
+        <p id="city-temp" class="m-3 is-size-5">Temperature</p>
       </div>
     </div>
   </header>
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
-        <div class="tile is-parent is-vertical">
+        <div class="tile is-parent is-vertical ml-3">
           <div class="tile is-child notification is-dark">
             <p class="title">How are you feeling today?</p>
             <p class="p-1">Mood:</p>
@@ -104,6 +104,10 @@
             <p id="quote"></p>
             <br>
             <i id="author" class="has-text-right"></i>
+            <br>
+            <br>
+            <button id="quote-again" class="button 
+              is-success">New Quote?</button>
           </article>
         </div>
         <div class="tile is-parent">
@@ -114,7 +118,7 @@
           </article>
         </div>
       </div>
-      <div class="tile is-parent">
+      <div class="tile is-parent ml-3">
         <article class="tile is-child notification is-danger">
           <p class="title">Trivia of the Day:</p>
           <p class="subtitle" id="trivia-question"></p>
@@ -149,7 +153,7 @@
         </article>
       </div>
     </div>
-    <div class="tile is-parent">
+    <div class="tile is-parent mr-3">
       <article class="tile is-child notification is-danger-light">
         <div class="content">
           <p class="title">Highlights and Stats from your Favorite Sports Team:</p>
