@@ -70,13 +70,36 @@ $("input").click(function moodSelector() {
     }
 });
 
+// Sets artist content to last input from user in local storage.
+function lastArtist() {
+    var lastArtist = localStorage.getItem("favoriteArtist");
+    $("#artist").attr("placeholder", lastArtist);
+    $('#artistTitle').text("Favorite Artist: " + lastArtist);
+    $('#artistSubtitle').text("Click below for Videos of " + lastArtist);
+    newArtistLink = "https://www.youtube.com/results?search_query=" + lastArtist;
+    $('#artist-link').attr('href', newArtistLink);
+}
+
+lastArtist();
+
+// Adds favorite artist input from user to youtube url associated with image.
+var artistEl = $('#artist');
+$('#artist').on('change', function changeArtist() {
+    var artistSel = ($(this).val());
+    $('#artistTitle').text("Favorite Artist: " + artistSel);
+    $('#artistSubtitle').text("Click below for Videos of " + artistSel);
+    newArtistLink = "https://www.youtube.com/results?search_query=" + artistSel;
+    console.log(newArtistLink);
+    $('#artist-link').attr('href', newArtistLink);
+    localStorage.setItem("favoriteArtist", artistSel);
+});
 
 //Trivia Question function
 function getTrivia() {
     triviaUrl = ("https://api.trivia.willfry.co.uk/questions?limit=5");
     var radioBtns = document.getElementsByClassName('trivia-selected');
     for (let i = 0; i < radioBtns.length; i++) {
-        radioBtns[i].checked=false;
+        radioBtns[i].checked = false;
     }
 
 
@@ -108,11 +131,11 @@ function getTrivia() {
             var incorrectAnswer3 = data[0].incorrectAnswers[2];
             $(`#${radio[2]}`).text(incorrectAnswer3);
             localStorage.setItem('answer', answer)
-            
+
         });
 }
 //run getTrivia for initial page load
-getTrivia()
+getTrivia();
 
 //trivia select listener
 
@@ -157,7 +180,7 @@ function quote() {
         })
 
 }
-quote()
+quote();
 
 // fetch('https://api.quotable.io/random')
 //   .then(response => response.json())
@@ -199,7 +222,7 @@ quote()
 //     .then(function (response) {
 //         console.log(response)
 //         return response.json();
-        
+
 //     })
 //     .then(function(data) {
 //         console.log(data.teams[0].strTeamBadge);
@@ -210,8 +233,8 @@ quote()
 //         // var scoreVideo = data.response[6].matchviewUrl
 //         // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
 //         // console.log(data.response)
-        
-        
+
+
 //     })
 // }
 // console.log(team)
@@ -226,20 +249,26 @@ quote()
 // console.log(teams)
 // })
 
+<<<<<<< HEAD
 $('#teamList').change(function(){
     $("#team").attr(src = "");
 // console.log($(this).children(":selected").attr("selected", true).val())
 console.log($(this).val())
+=======
+$('#teamList').change(function () {
+    // console.log($(this).children(":selected").attr("selected", true).val())
+    console.log($(this).val())
 
-var teamId = $(this).val();
+    var teamId = $(this).val();
+>>>>>>> dev
 
 
 
 
-    
+
     console.log(teamId);
-    
-    var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t="+ teamId
+
+    var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=" + teamId
 
     var teamVal = ""
 
@@ -292,30 +321,26 @@ $("#scorecontent").after(`<p>${homeTeam} ${homeScore} , ${awayTeam} ${awayScore}
 
 
 
-}
-        }) 
-        })
-       
     }
     team()
-    
 
-    
 
-   
 
-}) 
 
-  
 
-quote()
+
+})
+
+
+
+quote();
 
 //weather function
 var cityEl = $('#city');
 $('#city').on('change', function () {
     var citySel = ($(this).val())
     //convert to uppercase if not already
-    citySel = citySel[0].toUpperCase()+citySel.slice(1);
+    citySel = citySel[0].toUpperCase() + citySel.slice(1);
     var apiKey = "d45dbf09865d86748795ff69876d41b7";
     //build url for city
     cityWeatherUrl = ("https://api.openweathermap.org/data/2.5/weather?q=" + citySel + "&units=imperial" + "&appid=" + apiKey);
