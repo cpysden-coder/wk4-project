@@ -12,14 +12,21 @@
 </head>
 
 <body id="body" class="has-background-primary">
-  <header id="header" class="hero is-primary">
-    <div class="hero-body">
-      <p class="title">
-        Brthday
-      </p>
-      <p class="subtitle">
-        It's all about YOU!
-      </p>
+  <header id="header" class="hero is-primary is-justify-content-space-between">
+    <div class="hero-body is-flex is-flex-direction-row columns">
+      <div class="column is-3">
+        <p class="title">
+          Brthday
+        </p>
+        <p class="subtitle">
+          It's all about YOU!
+        </p>
+      </div>
+      <div id="weather-content" class="is-hidden is-flex is-flex-direction-row is-justify-content-flex-end column is-9">
+          <h3 id="current-conditions" class="m-3 is-size-5">Current Conditions</h3>
+          <p id="city-temp" class="m-3 is-size-5">Temperature</p>
+          <img id="city-weather-icon" class="m-3 is-size-5" alt="weather condition icon">
+      </div>
     </div>
   </header>
   <div class="tile is-ancestor">
@@ -89,7 +96,7 @@
             <p class="p-1">Current Favorite Artist:</p>
             <input class="input" type="text" placeholder="Olivia Rodrigo">
             <p class="p-1">Enter Your City for Current Weather:</p>
-            <input class="input" type="text" placeholder="City">
+            <input id="city" class="input" type="text" placeholder="City">
             <button class="button is-success mt-4">Watch the Magic Happen!</button>
           </div>
           <article class="tile is-child notification is-warning">
@@ -116,19 +123,19 @@
           </div>
           <!-- Content -->
           <label>
-            <input id="radio1" class="trivia-selected" type="radio" name="mood">
+            <input id="radio1" class="trivia-selected" type="radio" name="trivia">
             <i id="radio-1" class="trivia-select is-size-5 pr-5 light p-1"></i>
           </label>
           <label>
-            <input id="radio2" class="trivia-selected" type="radio" name="mood">
+            <input id="radio2" class="trivia-selected" type="radio" name="trivia">
             <i id="radio-2" class="trivia-select is-size-5 pr-5 light p-1"></i>
           </label>
           <label>
-            <input id="radio3" class="trivia-selected" type="radio" name="mood">
+            <input id="radio3" class="trivia-selected" type="radio" name="trivia">
             <i id="radio-3" class="trivia-select is-size-5 pr-5 light p-1"></i>
           </label>
           <label>
-            <input id="radio4" class="trivia-selected" type="radio" name="mood">
+            <input id="radio4" class="trivia-selected" type="radio" name="trivia">
             <i id="radio-4" class="trivia-select is-size-5 pr-5 light p-1"></i>
           </label>
           <h2 id="trivia-response"></h2>
