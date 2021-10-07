@@ -64,8 +64,9 @@
                 <option value="seattle%20seahawks">Seattle Seahawks</option>
                 <option value="tampa bay%20buccaneers">Tampa Bay Buccaneers</option>
                 <option value="tennessee%20titans">Tennessee Titans</option>
-                <option>Washington Football Team</option>
+                <option value = "washington football%20team"> Washington Football Team</option>
               </select>
+              </div>
 <body id="body" class="has-background-primary">
     <header id="header" class="hero is-primary">
         <div class="hero-body">
@@ -112,7 +113,8 @@
               </div>
               <article id="quote" class="tile is-child notification is-warning">
                 <p class="title">Quote of the Day:</p>
-                <p class="subtitle">"How you do anything is how you do everything"</p>
+                <p id="quote" class="subtitle">"How you do anything is how you do everything"</p>
+                <p id="author" class="has-text-right is-size-6"></p>
               </article>
             </div>
             <div class="tile is-parent">
@@ -130,6 +132,36 @@
             <p class="title">Quote of the Day:</p>
             <p class="subtitle">"How you do anything is how you do everything"</p>
           </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-danger">
+              <p class="title">Trivia of the Day:</p>
+              <p class="subtitle" id="trivia-question"></p>
+              
+              <div class="content">
+              </div>
+                <!-- Content -->
+              <label>
+                <input id="radio1" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-1" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <label>
+                <input id="radio2" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-2" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <label>
+                <input id="radio3" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-3" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <label>
+                <input id="radio4" class="trivia-selected" type="radio" name="mood">
+                  <i id="radio-4" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
+              </label>
+              <textarea id="trivia-response" class="input" type="text" placeholder="Select above to reveal if you were right:"></textarea>
+              <button id="play-again" class="button is-success">Play Again?</button>
+              
+            </article>
+          </div>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-info">
@@ -158,7 +190,7 @@
       <article class="tile is-child notification is-danger-light">
         <div class="content">
           <p class="title">Highlights and Stats from your Favorite Sports Team:</p>
-          <p class="subtitle">Go Hawks!💙💚</p>
+          <p class="subtitle" id= "fanfare">Go Team!</p>
           <div id="team" class="content">
             <!-- Content -->
           </div>
