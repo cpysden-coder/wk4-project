@@ -249,25 +249,14 @@ quote();
 // console.log(teams)
 // })
 
-<<<<<<< HEAD
-$('#teamList').change(function(){
-    $("#team").attr(src = "");
-// console.log($(this).children(":selected").attr("selected", true).val())
-console.log($(this).val())
-=======
 $('#teamList').change(function () {
+    $("#team").attr(src = "");
     // console.log($(this).children(":selected").attr("selected", true).val())
     console.log($(this).val())
 
-    var teamId = $(this).val();
->>>>>>> dev
 
-
-
-
-
-    console.log(teamId);
-
+    var teamId = $(this).val()
+    console.log(teamId)
     var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=" + teamId
 
     var teamVal = ""
@@ -275,65 +264,59 @@ $('#teamList').change(function () {
     function team() {
 
         fetch(teamUrl)
-        .then(function (response) {
-            console.log(response)
-            return response.json();
-            
-        })
-        .then(function(data) {
-            console.log(data.teams[0].idTeam);
-            var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
-            
-            $('#team').after(`<img src=${teamBadge}></img>`)
-            teamVal = (data.teams[0].idTeam);
-            console.log(teamVal);
-            
-           
-            var teamInfo = "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id="+ teamVal
-        console.log(teamInfo);
-        fetch(teamInfo)
-        .then(function (response){
-            console.log(response)
-            return response.json();
-        
-        })
-        .then(function(bigdata){
-            console.log(bigdata.results);
+            .then(function (response) {
+                console.log(response)
+                return response.json();
 
-for (let i = 0; i < bigdata.results.length; i++) {
-    
-    console.log("Home score", bigdata.results[i].intHomeScore)
-console.log("Away score", bigdata.results[i].intAwayScore)
-console.log("Away team", bigdata.results[i].strAwayTeam)
-console.log("Home team", bigdata.results[i].strHomeTeam)
-var homeTeam = bigdata.results[i].strHomeTeam
-var homeScore = bigdata.results[i].intHomeScore
-var awayTeam = bigdata.results[i].strAwayTeam
-var awayScore = bigdata.results[i].intAwayScore
-console.log(homeTeam);
-$("#scorecontent").after(`<p>${homeTeam} ${homeScore} , ${awayTeam} ${awayScore} </p>`)
-// $("#scorecontent").after(`<p>${homeScore}</p>`)
-// $("#scorecontent").after(`<p>${awayTeam}</p>`)
-// $("#scorecontent").after(`<p>${awayScore}</p>`)
-// $("scorecontent").append('<p>').text(`${homeScore}`)
-// $("scorecontent").append('<p>').text(`${awayTeam}`)
-// $("scorecontent").append('<p>').text(`${awayScore}`)
+            })
+            .then(function (data) {
+                console.log(data.teams[0].idTeam);
+                var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
+
+                $('#team').after(`<img src=${teamBadge}></img>`)
+                teamVal = (data.teams[0].idTeam);
+                console.log(teamVal);
 
 
+                var teamInfo = "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + teamVal
+                console.log(teamInfo);
+                fetch(teamInfo)
+                    .then(function (response) {
+                        console.log(response)
+                        return response.json();
 
+                    })
+                    .then(function (bigdata) {
+                        console.log(bigdata.results);
+
+                        for (let i = 0; i < bigdata.results.length; i++) {
+
+                            console.log("Home score", bigdata.results[i].intHomeScore)
+                            console.log("Away score", bigdata.results[i].intAwayScore)
+                            console.log("Away team", bigdata.results[i].strAwayTeam)
+                            console.log("Home team", bigdata.results[i].strHomeTeam)
+                            var homeTeam = bigdata.results[i].strHomeTeam
+                            var homeScore = bigdata.results[i].intHomeScore
+                            var awayTeam = bigdata.results[i].strAwayTeam
+                            var awayScore = bigdata.results[i].intAwayScore
+                            console.log(homeTeam);
+                            $("#scorecontent").after(`<p>${homeTeam} ${homeScore} , ${awayTeam} ${awayScore} </p>`)
+                            // $("#scorecontent").after(`<p>${homeScore}</p>`)
+                            // $("#scorecontent").after(`<p>${awayTeam}</p>`)
+                            // $("#scorecontent").after(`<p>${awayScore}</p>`)
+                            // $("scorecontent").append('<p>').text(`${homeScore}`)
+                            // $("scorecontent").append('<p>').text(`${awayTeam}`)
+                            // $("scorecontent").append('<p>').text(`${awayScore}`)
+
+
+
+                        }
+                    })
+            })
     }
     team()
-
-
-
-
-
-
 })
-
-
-
-quote();
+// quote();
 
 //weather function
 var cityEl = $('#city');
