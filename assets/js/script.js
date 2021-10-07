@@ -70,13 +70,36 @@ $("input").click(function moodSelector() {
     }
 });
 
+// Sets artist content to last input from user in local storage.
+function lastArtist() {
+    var lastArtist = localStorage.getItem("favoriteArtist");
+    $("#artist").attr("placeholder", lastArtist);
+    $('#artistTitle').text("Favorite Artist: " + lastArtist);
+    $('#artistSubtitle').text("Click below for Videos of " + lastArtist);
+    newArtistLink = "https://www.youtube.com/results?search_query=" + lastArtist;
+    $('#artist-link').attr('href', newArtistLink);
+}
+
+lastArtist();
+
+// Adds favorite artist input from user to youtube url associated with image.
+var artistEl = $('#artist');
+$('#artist').on('change', function changeArtist() {
+    var artistSel = ($(this).val());
+    $('#artistTitle').text("Favorite Artist: " + artistSel);
+    $('#artistSubtitle').text("Click below for Videos of " + artistSel);
+    newArtistLink = "https://www.youtube.com/results?search_query=" + artistSel;
+    console.log(newArtistLink);
+    $('#artist-link').attr('href', newArtistLink);
+    localStorage.setItem("favoriteArtist", artistSel);
+});
 
 //Trivia Question function
 function getTrivia() {
     triviaUrl = ("https://api.trivia.willfry.co.uk/questions?limit=5");
     var radioBtns = document.getElementsByClassName('trivia-selected');
     for (let i = 0; i < radioBtns.length; i++) {
-        radioBtns[i].checked=false;
+        radioBtns[i].checked = false;
     }
 
 
@@ -108,11 +131,11 @@ function getTrivia() {
             var incorrectAnswer3 = data[0].incorrectAnswers[2];
             $(`#${radio[2]}`).text(incorrectAnswer3);
             localStorage.setItem('answer', answer)
-            
+
         });
 }
 //run getTrivia for initial page load
-getTrivia()
+getTrivia();
 
 //trivia select listener
 
@@ -206,7 +229,7 @@ $('#quote-again').on('click', function () {
 //     .then(function (response) {
 //         console.log(response)
 //         return response.json();
-        
+
 //     })
 //     .then(function(data) {
 //         console.log(data.teams[0].strTeamBadge);
@@ -217,8 +240,8 @@ $('#quote-again').on('click', function () {
 //         // var scoreVideo = data.response[6].matchviewUrl
 //         // $('#scores').after(`<img id="vid" src="${scoreVideo}"></img>`)
 //         // console.log(data.response)
-        
-        
+
+
 //     })
 // }
 // console.log(team)
@@ -233,104 +256,115 @@ $('#quote-again').on('click', function () {
 // console.log(teams)
 // })
 
-$('#teamList').change(function(){
-// console.log($(this).children(":selected").attr("selected", true).val())
-console.log($(this).val())
-
-var teamId = $(this).val();
-
+$('#teamList').change(function () {
+    $("#team").attr(src = "");
+    // console.log($(this).children(":selected").attr("selected", true).val())
+    console.log($(this).val())
 
 
 
-    
+
+
     console.log(teamId);
-    
-    var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t="+ teamId
+
+    var teamUrl = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=" + teamId
 
     var teamVal = ""
 
     function team() {
 
         fetch(teamUrl)
-        .then(function (response) {
-            console.log(response)
-            return response.json();
+            .then(function (response) {
+                console.log(response)
+                return response.json();
+
+            })
+            .then(function (data) {
+                console.log(data.teams[0].idTeam);
+                var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
+
+                $('#team').after(`<img src=${teamBadge}></img>`)
+                teamVal = (data.teams[0].idTeam);
+                console.log(teamVal);
+
+
+                var teamInfo = "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + teamVal
+                console.log(teamInfo);
+                fetch(teamInfo)
+                    .then(function (response) {
+                        console.log(response)
+                        return response.json();
+
+                    })
+                    .then(function (bigdata) {
+                        console.log(bigdata.results);
+
+                        for (let i = 0; i < bigdata.results.length; i++) {
+
+                            console.log("Home score", bigdata.results[i].intHomeScore)
+                            console.log("Away score", bigdata.results[i].intAwayScore)
+                            console.log("Away team", bigdata.results[i].strAwayTeam)
+                            console.log("Home team", bigdata.results[i].strHomeTeam)
+                            var homeTeam = bigdata.results[i].strHomeTeam
+                            var homeScore = bigdata.results[i].intHomeScore
+                            var awayTeam = bigdata.results[i].strAwayTeam
+                            var awayScore = bigdata.results[i].intAwayScore
+                            console.log(homeTeam);
+                            $("#scorecontent").after(`<p>${homeTeam} ${homeScore} , ${awayTeam} ${awayScore} </p>`)
+                            // $("#scorecontent").after(`<p>${homeScore}</p>`)
+                            // $("#scorecontent").after(`<p>${awayTeam}</p>`)
+                            // $("#scorecontent").after(`<p>${awayScore}</p>`)
+                            // $("scorecontent").append('<p>').text(`${homeScore}`)
+                            // $("scorecontent").append('<p>').text(`${awayTeam}`)
+                            // $("scorecontent").append('<p>').text(`${awayScore}`)
+
+
+
+                        }
+                        team()
+
+
+
+
+
+
+                    })
+
+
+
+quote();
+
+                //weather function
+                var cityEl = $('#city');
+                $('#city').on('change', function () {
+                    var citySel = ($(this).val())
+                    //convert to uppercase if not already
+                    citySel = citySel[0].toUpperCase() + citySel.slice(1);
+                    var apiKey = "d45dbf09865d86748795ff69876d41b7";
+                    //build url for city
+                    cityWeatherUrl = ("https://api.openweathermap.org/data/2.5/weather?q=" + citySel + "&units=imperial" + "&appid=" + apiKey);
+
+                    fetch(cityWeatherUrl)
+                        .then(function (response) {
+                            return response.json();
+
+                        })
+                        .then(function (data) {
+                            var origTemp = data.main["temp"];
+                            console.log(`temp prior to slice - ${origTemp}`)
+                            temp = origTemp.toString();
+                            shortTemp = temp.slice(0, 2)
+                            console.log(`sliced temp - ${shortTemp}`)
+                            console.log(`modified temp - ${temp}`)
+                            $('#city-temp').text(`Temperature: ${shortTemp} ºF`);
+                            var icon = data.weather[0].icon;
+                            iconimg = "https://openweathermap.org/img/w/" + icon + ".png"
+                            $('#city-weather-icon').attr('src', iconimg);
+                            var descr = data.weather[0].main;
+                            $('#current-conditions').text(`Current Conditions for ${citySel}: ${descr}`)
+                            $('#weather-content').removeClass('is-hidden');
+                        });
+                    return
+                });
             
-        })
-        .then(function(data) {
-            console.log(data.teams[0].idTeam);
-            teamVal = (data.teams[0].idTeam);
-            console.log(teamVal);
-           
-            var teamInfo = "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id="+ teamVal
-        console.log(teamInfo);
-        fetch(teamInfo)
-        .then(function (response){
-            console.log(response)
-            return response.json();
-        
-        })
-        .then(function(bigdata){
-            console.log(bigdata.results);
 
-for (let i = 0; i < bigdata.results.length; i++) {
-    
-    console.log("home score", bigdata.results[i].intHomeScore)
-console.log("away score", bigdata.results[i].intAwayScore)
-console.log("away score", bigdata.results[i].strAwayTeam)
-console.log("away score", bigdata.results[i].strHomeTeam)
-var homeScore = bigdata.results[i].intHomeScore
-var awayScore = bigdata.results[i].intAwayScore
-var awayTeam = bigdata.results[i].strAwayTeam
-var homeTeam = bigdata.results[i].strHomeTeam
-
-}
-        }) 
-        })
-       
-    }
-    team()
-    
-
-    
-
-   
-
-}) 
-
-  
-
-quote()
-
-//weather function
-var cityEl = $('#city');
-$('#city').on('change', function () {
-    var citySel = ($(this).val())
-    //convert to uppercase if not already
-    citySel = citySel[0].toUpperCase()+citySel.slice(1);
-    var apiKey = "d45dbf09865d86748795ff69876d41b7";
-    //build url for city
-    cityWeatherUrl = ("https://api.openweathermap.org/data/2.5/weather?q=" + citySel + "&units=imperial" + "&appid=" + apiKey);
-
-    fetch(cityWeatherUrl)
-        .then(function (response) {
-            return response.json();
-
-        })
-        .then(function (data) {
-            var origTemp = data.main["temp"];
-            console.log(`temp prior to slice - ${origTemp}`)
-            temp = origTemp.toString();
-            shortTemp = temp.slice(0,2)
-            console.log(`sliced temp - ${shortTemp}`)
-            console.log(`modified temp - ${temp}`)
-            $('#city-temp').text(`Temperature: ${shortTemp} ºF`);
-            var icon = data.weather[0].icon;
-            iconimg = "https://openweathermap.org/img/w/" + icon + ".png"
-            $('#city-weather-icon').attr('src', iconimg);
-            var descr = data.weather[0].main;
-            $('#current-conditions').text(`Current Conditions for ${citySel}: ${descr}`)
-            $('#weather-content').removeClass('is-hidden');
-        });
-    return
-});
