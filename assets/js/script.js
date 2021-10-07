@@ -227,6 +227,7 @@ quote()
 // })
 
 $('#teamList').change(function(){
+    $("#team").attr(src = "");
 // console.log($(this).children(":selected").attr("selected", true).val())
 console.log($(this).val())
 
@@ -252,8 +253,12 @@ var teamId = $(this).val();
         })
         .then(function(data) {
             console.log(data.teams[0].idTeam);
+            var teamBadge = (`"${data.teams[0].strTeamBadge}"`);
+            
+            $('#team').after(`<img src=${teamBadge}></img>`)
             teamVal = (data.teams[0].idTeam);
             console.log(teamVal);
+            
            
             var teamInfo = "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id="+ teamVal
         console.log(teamInfo);
@@ -268,14 +273,24 @@ var teamId = $(this).val();
 
 for (let i = 0; i < bigdata.results.length; i++) {
     
-    console.log("home score", bigdata.results[i].intHomeScore)
-console.log("away score", bigdata.results[i].intAwayScore)
-console.log("away score", bigdata.results[i].strAwayTeam)
-console.log("away score", bigdata.results[i].strHomeTeam)
-var homeScore = bigdata.results[i].intHomeScore
-var awayScore = bigdata.results[i].intAwayScore
-var awayTeam = bigdata.results[i].strAwayTeam
+    console.log("Home score", bigdata.results[i].intHomeScore)
+console.log("Away score", bigdata.results[i].intAwayScore)
+console.log("Away team", bigdata.results[i].strAwayTeam)
+console.log("Home team", bigdata.results[i].strHomeTeam)
 var homeTeam = bigdata.results[i].strHomeTeam
+var homeScore = bigdata.results[i].intHomeScore
+var awayTeam = bigdata.results[i].strAwayTeam
+var awayScore = bigdata.results[i].intAwayScore
+console.log(homeTeam);
+$("#scorecontent").after(`<p>${homeTeam} ${homeScore} , ${awayTeam} ${awayScore} </p>`)
+// $("#scorecontent").after(`<p>${homeScore}</p>`)
+// $("#scorecontent").after(`<p>${awayTeam}</p>`)
+// $("#scorecontent").after(`<p>${awayScore}</p>`)
+// $("scorecontent").append('<p>').text(`${homeScore}`)
+// $("scorecontent").append('<p>').text(`${awayTeam}`)
+// $("scorecontent").append('<p>').text(`${awayScore}`)
+
+
 
 }
         }) 
