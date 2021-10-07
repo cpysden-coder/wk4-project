@@ -11,26 +11,52 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 
-<body class="has-background-dark">
-  <header class="hero is-primary">
-    <div class="hero-body">
-      <p class="title">
-        Brthday
-      </p>
-      <p class="subtitle">
-        It's all about YOU!
-      </p>
+<body id="body" class="has-background-primary">
+  <header id="header" class="hero is-primary is-justify-content-space-between">
+    <div class="hero-body is-flex is-flex-direction-row columns">
+      <div class="column is-3">
+        <p class="title">
+          Brthday
+        </p>
+        <p class="subtitle">
+          It's all about YOU!
+        </p>
+      </div>
+      <div id="weather-content" class="is-hidden is-flex is-flex-direction-row is-justify-content-flex-end column is-9">
+          <h3 id="current-conditions" class="m-3 is-size-5">Current Conditions</h3>
+          <p id="city-temp" class="m-3 is-size-5">Temperature</p>
+          <img id="city-weather-icon" class="m-3 is-size-5" alt="weather condition icon">
+      </div>
     </div>
   </header>
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-8">
       <div class="tile">
         <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification is-dark">
+          <div class="tile is-child notification is-dark">
             <p class="title">How are you feeling today?</p>
-            <input class="input" type="text" placeholder="Happy/Sad/Excited/Alright">
-            <div class="select">
-              <select id = "teamList">
+            <p class="p-1">Mood:</p>
+            <div class="control">
+              <label>
+                <input id="calm" type="radio" name="mood">
+                <i class="has-text-link-light p-1">Calm</i>
+              </label>
+              <label>
+                <input id="motivated" type="radio" name="mood">
+                <i class="has-text-success p-1">Motivated</i>
+              </label>
+              <label>
+                <input id="blue" type="radio" name="mood">
+                <i class="has-text-info-dark p-1">Blue</i>
+              </label>
+              <label>
+                <input id="sunshine" type="radio" name="mood">
+                <i class="has-text-warning light p-1">Sunshine</i>
+              </label>
+            </div>
+            <br>
+            <div class="select tile is-child">
+              <select id="teamList">
                 <option value="" selected>Pick your favorite NFL team!</option>
 
                 <option value="arizona%20cardinals">Arizona Cardinals</option>
@@ -66,111 +92,25 @@
                 <option value="tennessee%20titans">Tennessee Titans</option>
                 <option value = "washington football%20team"> Washington Football Team</option>
               </select>
-              </div>
-<body id="body" class="has-background-primary">
-    <header id="header" class="hero is-primary">
-        <div class="hero-body">
-            <p class="title">
-                Brthday
-            </p>
-            <p class="subtitle">
-                It's all about YOU!
-            </p>
-        </div>
-    </header>
-    <div class="tile is-ancestor">
-        <div class="tile is-vertical is-8">
-          <div class="tile">
-            <div class="tile is-parent is-vertical">
-              <div class="tile is-child notification is-dark">
-                <p class="title">How are you feeling today?</p>
-                <p class="p-1">Mood:</p>
-                <div class="control">
-                  <label>
-                  <input id="calm" type="radio" name="mood">
-                    <i class="has-text-link-light p-1" >Calm</i>
-                  </label>
-                  <label>
-                  <input id="motivated" type="radio" name="mood">
-                    <i class="has-text-success p-1" >Motivated</i>
-                  </label>
-                  <label>
-                  <input id="blue" type="radio" name="mood">
-                    <i class="has-text-info-dark p-1" >Blue</i>
-                  </label>
-                  <label>
-                  <input id="sunshine" type="radio" name="mood">
-                    <i class="has-text-warning light p-1" >Sunshine</i>
-                  </label>
-                </div>
-                <p class="p-1">Favorite Sports Team:</p>
-                <input class="input" type="text" placeholder="Liverpool">
-                <p class="p-1">Current Favorite Artist:</p>
-                <input class="input" type="text" placeholder="Olivia Rodrigo">
-                <p class="p-1">Enter Your City for Current Weather:</p>
-                <input class="input" type="text" placeholder="City">
-                <button class="button is-success mt-4">Watch the Magic Happen!</button>
-              </div>
-              <article id="quote" class="tile is-child notification is-warning">
-                <p class="title">Quote of the Day:</p>
-                <p id="quote" class="subtitle">"How you do anything is how you do everything"</p>
-                <p id="author" class="has-text-right is-size-6"></p>
-              </article>
             </div>
-            <div class="tile is-parent">
-              <article class="tile is-child notification is-info">
-                <p class="title">Favorite Artist:</p>
-                <p class="subtitle">Click below for Videos of your Favorite Artist:</p>
-                <img src="" alt="">
-              </article>
-            </div>
-            <input class="input" type="text" placeholder="Favorite Artist">
-            <input class="input" type="text" placeholder="Enter Your City for Current Weather">
-            <button id="magicBtn" class="button is-success">Watch the Magic Happen!</button>
-          </article>
+            <p class="p-1">Current Favorite Artist:</p>
+            <input class="input" type="text" placeholder="Olivia Rodrigo">
+            <p class="p-1">Enter Your City for Current Weather:</p>
+            <input id="city" class="input" type="text" placeholder="City">
+            <button class="button is-success mt-4">Watch the Magic Happen!</button>
+          </div>
           <article class="tile is-child notification is-warning">
             <p class="title">Quote of the Day:</p>
-            <p class="subtitle">"How you do anything is how you do everything"</p>
+            <p id="quote"></p>
+            <br>
+            <i id="author" class="has-text-right"></i>
           </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification is-danger">
-              <p class="title">Trivia of the Day:</p>
-              <p class="subtitle" id="trivia-question"></p>
-              
-              <div class="content">
-              </div>
-                <!-- Content -->
-              <label>
-                <input id="radio1" class="trivia-selected" type="radio" name="mood">
-                  <i id="radio-1" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
-              </label>
-              <label>
-                <input id="radio2" class="trivia-selected" type="radio" name="mood">
-                  <i id="radio-2" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
-              </label>
-              <label>
-                <input id="radio3" class="trivia-selected" type="radio" name="mood">
-                  <i id="radio-3" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
-              </label>
-              <label>
-                <input id="radio4" class="trivia-selected" type="radio" name="mood">
-                  <i id="radio-4" class="trivia-select is-size-5 pr-5 has-text-warning light p-1" ></i>
-              </label>
-              <textarea id="trivia-response" class="input" type="text" placeholder="Select above to reveal if you were right:"></textarea>
-              <button id="play-again" class="button is-success">Play Again?</button>
-              
-            </article>
-          </div>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-info">
             <p class="title">Favorite Artist:</p>
             <p class="subtitle">Click below for Videos of your Favorite Artist:</p>
-            <iframe width="400" height="300" src="https://www.youtube.com/embed/gNi_6U5Pm_o"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
+            <img src="" alt="">
           </article>
         </div>
       </div>
@@ -178,11 +118,34 @@
         <article class="tile is-child notification is-danger">
           <p class="title">Trivia of the Day:</p>
           <p class="subtitle" id="trivia-question"></p>
-          <input class="input" type="text" placeholder="Your Answer:">
-          <button class="button is-success">Submit!</button>
+
           <div class="content">
-            <!-- Content -->
           </div>
+          <!-- Content -->
+          <label>
+            <input id="radio1" class="trivia-selected" type="radio" name="trivia">
+            <i id="radio-1" class="trivia-select is-size-5 pr-5 light p-1"></i>
+          </label>
+          <label>
+            <input id="radio2" class="trivia-selected" type="radio" name="trivia">
+            <i id="radio-2" class="trivia-select is-size-5 pr-5 light p-1"></i>
+          </label>
+          <label>
+            <input id="radio3" class="trivia-selected" type="radio" name="trivia">
+            <i id="radio-3" class="trivia-select is-size-5 pr-5 light p-1"></i>
+          </label>
+          <label>
+            <input id="radio4" class="trivia-selected" type="radio" name="trivia">
+            <i id="radio-4" class="trivia-select is-size-5 pr-5 light p-1"></i>
+          </label>
+          <h2 id="trivia-response"></h2>
+          <br>
+          <button id="play-again" class="button 
+              is-success">Play Again?</button>
+          <br>
+          <br>
+          <br>
+
         </article>
       </div>
     </div>
