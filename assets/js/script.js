@@ -329,42 +329,44 @@ $('#teamList').change(function () {
 
 
                     })
+            })
 
-
+    }
+})
 
 quote();
 
-                //weather function
-                var cityEl = $('#city');
-                $('#city').on('change', function () {
-                    var citySel = ($(this).val())
-                    //convert to uppercase if not already
-                    citySel = citySel[0].toUpperCase() + citySel.slice(1);
-                    var apiKey = "d45dbf09865d86748795ff69876d41b7";
-                    //build url for city
-                    cityWeatherUrl = ("https://api.openweathermap.org/data/2.5/weather?q=" + citySel + "&units=imperial" + "&appid=" + apiKey);
+//weather function
+var cityEl = $('#city');
+$('#city').on('change', function () {
+    var citySel = ($(this).val())
+    //convert to uppercase if not already
+    citySel = citySel[0].toUpperCase() + citySel.slice(1);
+    var apiKey = "d45dbf09865d86748795ff69876d41b7";
+    //build url for city
+    cityWeatherUrl = ("https://api.openweathermap.org/data/2.5/weather?q=" + citySel + "&units=imperial" + "&appid=" + apiKey);
 
-                    fetch(cityWeatherUrl)
-                        .then(function (response) {
-                            return response.json();
+    fetch(cityWeatherUrl)
+        .then(function (response) {
+            return response.json();
 
-                        })
-                        .then(function (data) {
-                            var origTemp = data.main["temp"];
-                            console.log(`temp prior to slice - ${origTemp}`)
-                            temp = origTemp.toString();
-                            shortTemp = temp.slice(0, 2)
-                            console.log(`sliced temp - ${shortTemp}`)
-                            console.log(`modified temp - ${temp}`)
-                            $('#city-temp').text(`Temperature: ${shortTemp} ºF`);
-                            var icon = data.weather[0].icon;
-                            iconimg = "https://openweathermap.org/img/w/" + icon + ".png"
-                            $('#city-weather-icon').attr('src', iconimg);
-                            var descr = data.weather[0].main;
-                            $('#current-conditions').text(`Current Conditions for ${citySel}: ${descr}`)
-                            $('#weather-content').removeClass('is-hidden');
-                        });
-                    return
-                });
-            
+        })
+        .then(function (data) {
+            var origTemp = data.main["temp"];
+            console.log(`temp prior to slice - ${origTemp}`)
+            temp = origTemp.toString();
+            shortTemp = temp.slice(0, 2)
+            console.log(`sliced temp - ${shortTemp}`)
+            console.log(`modified temp - ${temp}`)
+            $('#city-temp').text(`Temperature: ${shortTemp} ºF`);
+            var icon = data.weather[0].icon;
+            iconimg = "https://openweathermap.org/img/w/" + icon + ".png"
+            $('#city-weather-icon').attr('src', iconimg);
+            var descr = data.weather[0].main;
+            $('#current-conditions').text(`Current Conditions for ${citySel}: ${descr}`)
+            $('#weather-content').removeClass('is-hidden');
+        });
+    return
+});
+
 
